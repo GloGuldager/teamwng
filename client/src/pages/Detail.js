@@ -6,13 +6,13 @@ import API from "../utils/API";
 
 class Detail extends Component {
   state = {
-    book: {}
+    review: {}
   };
-  // When this component mounts, grab the book with the _id of this.props.match.params.id
-  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+  // When this component mounts, grab the review with the _id of this.props.match.params.id
+  // e.g. localhost:3000/reviews/599dcb67f0f16317844583fc
   componentDidMount() {
-    API.getBook(this.props.match.params.id)
-      .then(res => this.setState({ book: res.data }))
+    API.getReview(this.props.match.params.id)
+      .then(res => this.setState({ review: res.data }))
       .catch(err => console.log(err));
   }
 
@@ -23,7 +23,7 @@ class Detail extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                {this.state.book.title} by {this.state.book.author}
+                {this.state.review.reviewerName} by {this.state.review.summary}
               </h1>
             </Jumbotron>
           </Col>
@@ -31,16 +31,16 @@ class Detail extends Component {
         <Row>
           <Col size="md-10 md-offset-1">
             <article>
-              <h1>Synopsis</h1>
+              <h1>Review Text</h1>
               <p>
-                {this.state.book.synopsis}
+                {this.state.review.reviewText}
               </p>
             </article>
           </Col>
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
+            <Link to="/">← Back to Summary</Link>
           </Col>
         </Row>
       </Container>
